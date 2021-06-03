@@ -1,0 +1,32 @@
+.bg-pink {
+    background-color: $pink-logo;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    @include tablet{
+        width: 100%;
+    }
+}
+
+.bg-white {
+   @include bg-white;
+    height: 644px;
+    
+}
+    
+.bg-white-signup {
+    @include bg-white;
+    height: 850px;
+    @include tablet{
+        height: 100%;
+        padding-bottom: 20px;
+    }
+}
+
+.bg-white-user {
+    @include bg-white;
+    padding-top: 50px;
+    height: 450px;
+}

@@ -1,0 +1,23 @@
+.form-field {
+    background-color: $grey-field;
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    font-family: 'roboto-thin';
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: none;
+    padding: 0;
+    @include tablet{
+        width: 80%;
+    }
+}
+
+.logo {
+    height: 250px;
+}

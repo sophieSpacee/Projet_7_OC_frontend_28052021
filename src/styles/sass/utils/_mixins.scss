@@ -1,0 +1,15 @@
+@mixin tablet {
+    @media screen and (max-width: 600px) {
+      @content;
+    }
+  }
+
+  @mixin bg-white {
+    background-color: white;
+    width: 612px;
+    height: 644px;
+    text-align: center;
+    @include tablet{
+        width: 100%;
+    }
+  }

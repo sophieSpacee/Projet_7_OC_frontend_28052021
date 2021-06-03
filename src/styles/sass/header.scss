@@ -1,0 +1,22 @@
+.header {
+    background-color:white;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    top:0;
+    
+    @include tablet {
+        display: flex;
+    }
+}
+
+.logoHeader {
+    height: 100px;
+}
+
+.icone-header {
+    height: 40px;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}
