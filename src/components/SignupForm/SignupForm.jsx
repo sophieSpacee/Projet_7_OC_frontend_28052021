@@ -92,7 +92,7 @@ const SignupForm = () => {
         </Form.Group>
         <Button type="submit">Créer mon compte</Button>
       </Form>
-      <a href="/">Se connecter</a>
+      <a className="link" href="/">Se connecter</a>
     </div>
   );
 }

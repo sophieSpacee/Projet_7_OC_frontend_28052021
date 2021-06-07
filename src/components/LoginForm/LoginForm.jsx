@@ -75,7 +75,7 @@ const LoginForm = () => {
         </Form.Group>
         <Button type="submit">Se connecter</Button>
       </Form>
-      <a href="/Signup">Créez votre compte</a>
+      <a className="link" href="/Signup">Créez votre compte</a>
     </div>
   );
 }

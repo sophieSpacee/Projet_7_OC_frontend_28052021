@@ -1,0 +1,12 @@
+.bg-pink-feed {
+    background-color: $pink-logo;
+    height: 100vh;
+    @include tablet{
+        width: 100%;
+    }
+}
+
+.feed {
+    position: absolute;
+    top: 100px;
+}

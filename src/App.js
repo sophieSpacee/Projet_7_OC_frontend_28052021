@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
-import Feed from "./pages/Feed";
+import Feed from "./pages/Feed/Feed";
 import Signup from "./pages/Signup";
 import User from "./pages/User";
 import ProtectedRoute from "./components/ProtectedRoute";

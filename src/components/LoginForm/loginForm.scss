@@ -6,6 +6,13 @@
 .bg-white {
     @include bg-white;
      height: 644px;
+     margin: auto;
+     vertical-align: middle;
+
  }
-     
+
+ .link {
+     font-family: 'roboto';
+     color: $grey-button;
+ }
  
