@@ -3,7 +3,7 @@ import '../styles/css/style.css';
 import SignupForm from '../components/SignupForm';
 
 
-function Login() {
+const Signup = () => {
   return (
     <div className="bg-pink">
         <SignupForm/>
@@ -11,4 +11,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

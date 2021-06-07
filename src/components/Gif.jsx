@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Gif () {
+const Gif = () => {
     
    return <div> Gif </div>
 

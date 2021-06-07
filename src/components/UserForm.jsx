@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 import {useHistory} from "react-router-dom"
 
 
-function UserForm() {
+const UserForm = () => {
     const history = useHistory()
     const changePage = () => {
             history.push("/feed")
@@ -89,9 +89,9 @@ function UserForm() {
         </Form.Group>
  
     
-        <Button type="submit" text="Modifier" />
+        <Button type="submit"  >Modifier</Button>
       </Form>
-      <Button onClick={deleteProfil} text="Supprimer le profil" backgroundColor={"#FA0505"}/>
+      <Button onClick={deleteProfil}  backgroundColor={"#FA0505"}>Supprimer le profil</Button>
 
  
     </div>

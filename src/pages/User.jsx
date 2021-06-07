@@ -7,7 +7,7 @@ import Header from "../components/Header"
 import UserForm from '../components/UserForm';
 
 
-function User() {
+const User = () => {
     const history = useHistory()
     const changePage = () => {
         history.push("/feed")

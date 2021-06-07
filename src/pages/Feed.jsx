@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/css/style.css';
 
-function Feed() {
+const Feed = () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     fetch('http://localhost:3001/api/gifs', {

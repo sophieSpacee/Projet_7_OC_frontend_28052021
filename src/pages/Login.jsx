@@ -3,7 +3,7 @@ import '../styles/css/style.css';
 import LoginForm from '../components/LoginForm';
 
 
-function Login() {
+const Login = () => {
   return (
     <div className="bg-pink">
         <LoginForm/>

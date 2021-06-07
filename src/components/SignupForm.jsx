@@ -3,14 +3,13 @@ import Button from "./Button";
 import Form from "react-bootstrap/Form";
 import "../styles/css/style.css";
 import logo from "../assets/logo.png";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
-
-function SignupForm() {
-    const history = useHistory()
-    const changePage = () => {
-            history.push("/")
-    }
+const SignupForm = () => {
+  const history = useHistory();
+  const changePage = () => {
+    history.push("/");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,17 +24,15 @@ function SignupForm() {
     fetch("http://localhost:3001/api/users", {
       method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
     })
       .then((response) => {
-        
         changePage();
         return response.json();
-         
-       })
+      })
 
       .catch((error) => console.error(error));
   };
@@ -56,7 +53,7 @@ function SignupForm() {
             className="form-field"
             type="text"
             pattern="^[a-z ,.'-]+$"
-            minlength="2"
+            minLength="2"
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
           />
@@ -67,7 +64,7 @@ function SignupForm() {
             className="form-field"
             type="text"
             pattern="^[a-z ,.'-]+$"
-            minlength="2"
+            minLength="2"
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
           />
@@ -86,14 +83,14 @@ function SignupForm() {
         <Form.Group controlId="password">
           <Form.Control
             placeholder="Mot de passe"
-            minlength="6"
+            minLength="6"
             className="form-field"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button type="submit" text="Créer mon compte" />
+        <Button type="submit">Créer mon compte</Button>
       </Form>
       <a href="/">Se connecter</a>
     </div>

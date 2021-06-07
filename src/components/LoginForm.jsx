@@ -3,39 +3,45 @@ import Button from "./Button";
 import Form from "react-bootstrap/Form";
 import "../styles/css/style.css";
 import logo from "../assets/logo.png";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
+// import AlertMessage from "./AlertMessage";
 
-function LoginForm() {
-  const history = useHistory()
-    const changePage = () => {
-            history.push("/feed")
+const LoginForm = () => {
+  const history = useHistory();
+  const changePage = (response) => {
+    if (response.code === "LOGINFAILED") {
+      console.log("Login failed");
+    } else {
+      history.push("/feed");
     }
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email, password)
+    console.log(email, password);
     const body = {
-      email: email, 
-      password: password
-    }
-    console.log(body)
-    fetch('http://localhost:3001/api/users/login', {
+      email: email,
+      password: password,
+    };
+    console.log(body);
+    fetch("http://localhost:3001/api/users/login", {
       method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
-    .then((response) => {
-      return response.json();
-    })
-    .then(response => {
-      console.log(response)
-  localStorage.setItem("user", JSON.stringify(response));
-  console.log(localStorage)
-      changePage();
-    })
-    .catch((error) => console.error(error))
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        //changer avec contexte
+        localStorage.setItem("user", JSON.stringify(response));
+        console.log(localStorage);
+        changePage(response);
+      })
+      .catch((error) => console.error(error));
   };
 
   const [email, setEmail] = useState("");
@@ -60,14 +66,14 @@ function LoginForm() {
         <Form.Group controlId="password">
           <Form.Control
             placeholder="Mot de passe"
-            minlength="6"
+            minLength="6"
             className="form-field"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button type="submit" text="Se connecter" />
+        <Button type="submit">Se connecter</Button>
       </Form>
       <a href="/Signup">Créez votre compte</a>
     </div>

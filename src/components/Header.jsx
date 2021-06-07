@@ -3,7 +3,7 @@ import logo4 from '../assets/logo4.png'
 import "../styles/css/style.css"
 import people from "../assets/people.png"
 
-function Header (props) {
+const Header = ()=> {
     
    return <div className="header">
         <a href="/feed">

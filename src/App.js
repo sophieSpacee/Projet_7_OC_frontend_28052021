@@ -1,31 +1,31 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route
-}
-from 'react-router-dom';
-import Login from './pages/Login';
-import Feed from './pages/Feed';
-import Signup from './pages/Signup';
-import User from './pages/User';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./pages/Login";
+import Feed from "./pages/Feed";
+import Signup from "./pages/Signup";
+import User from "./pages/User";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  return(
+  return (
+    // contexte
     <Router>
-      <Route path={'/'} exact={true}>
-        <Login/>
-      </Route>
-      <Route path={'/feed'} exact={true}>
-        <Feed/>
-      </Route>
-      <Route path={'/signup'} exact={true}>
-        <Signup/>
-      </Route>
-      <Route path={'/user'} exact={true}>
-        <User/>
-      </Route>
+      <Switch>
+        <Route path={"/"} exact={true} component={Login}>
+          <Login />
+        </Route>
+        <ProtectedRoute path={"/feed"} exact={true} component={Feed}>
+          <Feed />
+        </ProtectedRoute>
+        <Route path={"/signup"} exact={true} component={Signup}>
+          <Signup />
+        </Route>
+        <ProtectedRoute path={"/user"} exact={true} component={User}>
+          <User />
+        </ProtectedRoute>
+      </Switch>
     </Router>
-  )
+  );
 }
 
 export default App;
