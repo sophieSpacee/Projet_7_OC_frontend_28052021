@@ -1,5 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import '../styles/css/style.css';
+import Gif from "../components/Gif/Gif";
+import Header from "../components/Header/Header"
 
 const Feed = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -18,15 +21,17 @@ const Feed = () => {
     })
     .then(response => {
       console.log(response)
-  localStorage.setItem("user", JSON.stringify(response));
-  console.log(localStorage)
+
     })
     .catch((error) => console.error(error))
 
 
 
   return (
-   <div>This is your feed</div>
+   <div className="bg-pink">
+     <Header/>
+     <Gif/>
+   </div>
   );
 }
 

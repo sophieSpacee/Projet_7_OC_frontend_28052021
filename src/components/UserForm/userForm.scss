@@ -1,0 +1,9 @@
+.form-field {
+    @include form-field
+}
+
+.bg-white-user {
+    @include bg-white;
+    padding-top: 50px;
+    height: 520px;
+}

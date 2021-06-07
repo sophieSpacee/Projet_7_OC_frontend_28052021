@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import Button from "../Button/Button";
 import Form from "react-bootstrap/Form";
-import "../styles/css/style.css";
-import logo from "../assets/logo.png";
+import "../../styles/css/style.css"
 import {useHistory} from "react-router-dom"
 
 
@@ -58,6 +57,11 @@ const UserForm = () => {
          })
   
         .catch((error) => console.error(error));
+  };
+
+  const disconnect = () => {
+    localStorage.clear();
+
   }
   
   const [first_name, setFirstName] = useState(userInfo.first_name);
@@ -89,9 +93,10 @@ const UserForm = () => {
         </Form.Group>
  
     
-        <Button type="submit"  >Modifier</Button>
+        <Button type="submit"  >Modifier le profil</Button>
       </Form>
-      <Button onClick={deleteProfil}  backgroundColor={"#FA0505"}>Supprimer le profil</Button>
+      <Button onClick={disconnect}  backgroundColor={"transparent"} marginTop={10} border={"2px solid #736D6D"} color={"#736D6D"}>Se déconnecter</Button>
+      <Button onClick={deleteProfil}  backgroundColor={"#FA0505"} marginTop={10}>Supprimer le profil</Button>
 
  
     </div>

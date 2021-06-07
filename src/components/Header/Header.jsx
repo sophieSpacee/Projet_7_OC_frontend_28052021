@@ -1,7 +1,7 @@
 import React from 'react';
-import logo4 from '../assets/logo4.png'
-import "../styles/css/style.css"
-import people from "../assets/people.png"
+import logo4 from '../../assets/logo4.png'
+import "../../styles/css/style.css"
+import people from "../../assets/people.png"
 
 const Header = ()=> {
     

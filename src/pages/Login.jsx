@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import '../styles/css/style.css';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/LoginForm/LoginForm';
 
 
 const Login = () => {

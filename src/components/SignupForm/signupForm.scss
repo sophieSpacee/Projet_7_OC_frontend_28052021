@@ -1,0 +1,13 @@
+.form-field {
+    @include form-field
+}
+
+
+.bg-white-signup {
+    @include bg-white;
+    height: 850px;
+    @include tablet{
+        height: 100%;
+        padding-bottom: 20px;
+    }
+}

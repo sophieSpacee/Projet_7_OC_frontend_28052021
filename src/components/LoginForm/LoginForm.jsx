@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import Button from "../Button/Button";
 import Form from "react-bootstrap/Form";
-import "../styles/css/style.css";
-import logo from "../assets/logo.png";
+import "../../styles/css/style.css"
+import logo from "../../assets/logo.png";
 import { useHistory } from "react-router-dom";
 // import AlertMessage from "./AlertMessage";
 

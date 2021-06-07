@@ -1,0 +1,46 @@
+
+
+.gifs-container {
+@include bg-white;
+display: flex;
+
+    justify-content: center;
+}
+
+.gif-container{
+    margin-top: 20px;
+    width: 80%;
+}
+
+.author-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    font-family: 'roboto';
+    font-size: 18px;
+}
+
+.likes-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid $grey-field;
+    font-family: 'roboto-light';
+    font-size: 15px;
+    padding-bottom: 7px;
+    padding-top: 10px;
+    color: $grey-button;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.like-button {
+    font-family: 'roboto';
+    background-color: white;
+    border:none;
+    font-size: 18px;
+}

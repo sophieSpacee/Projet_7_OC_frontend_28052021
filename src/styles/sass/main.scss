@@ -1,10 +1,13 @@
 @import "./utils/variables";
 @import "./utils/mixins";
 @import "./base.scss";
-@import "./button.scss";
-@import "./index.scss";
-@import "./form.scss";
-@import "./header.scss";
+@import "../../components/AlertMessage/alertMessage.scss";
+@import "../../components/Button/button.scss";
+@import "../../components/Header/header.scss";
+@import "../../components/LoginForm/loginForm.scss";
+@import "../../components/SignupForm/signupForm.scss";
+@import "../../components/UserForm/userForm.scss";
+@import "../sass/gif.scss";
 
 
 @font-face {
@@ -18,6 +21,6 @@
 }
 
 @font-face {
-    font-family: roboto-bold;
-    src: url(../fonts/Roboto-Medium.ttf);
+    font-family: roboto-light;
+    src: url(../fonts/Roboto-Light.ttf);
 }
