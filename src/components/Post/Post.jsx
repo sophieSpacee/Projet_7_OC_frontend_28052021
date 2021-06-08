@@ -3,7 +3,6 @@ import Form from "react-bootstrap/Form";
 import Button from "../Button/Button";
 import "../../styles/css/style.css";
 import people from "../../assets/people.png";
-import FileUploader from "../FileUploader/FileUploader";
 
 const Post = () => {
   const [title, setTitle] = useState("");
@@ -19,15 +18,14 @@ const Post = () => {
       console.log("pas d'erreur");
     }
   };
-  
 
   const handleSubmit = (event) => {
-    event.preventDefault();   
+    event.preventDefault();
     const formData = new FormData();
 
-    formData.append('image', gif);
-    formData.append('title', title);
-    console.log(formData)
+    formData.append("image", gif);
+    formData.append("title", title);
+    console.log(formData);
     fetch("http://localhost:3001/api/gifs", {
       method: "POST",
       headers: {
@@ -45,6 +43,12 @@ const Post = () => {
         console.log("post submitted");
       })
       .catch((error) => console.error(error));
+  };
+
+  //essai
+  const hiddenFileInput = React.useRef(null);
+  const handleClick = event => {
+    hiddenFileInput.current.click();
   };
 
   return (
@@ -66,7 +70,7 @@ const Post = () => {
           </Form.Group>
           <div className="center">
             <Form.Group controlId="gif">
-              <Form.Control
+              {/* <Form.Control
                 placeholder="Gif upload "
                 className="post__upload"
                 type="file"
@@ -74,12 +78,21 @@ const Post = () => {
                     setGif(e.target.files[0])
                 }
                 required
+              /> */}
+              <button className="post__upload" onClick={handleClick}>
+                {gif ? <img className="image-preview" src={URL.createObjectURL(gif)} ></img>  : "Téléchargez votre image"}
+              </button>
+              <input
+                type="file"
+                ref={hiddenFileInput}
+                onChange={(e) => setGif(e.target.files[0])}
+                style={{ display: "none" }}
               />
             </Form.Group>
 
-            {/* <FileUploader/> */}
-
-            <Button type="submit">Publier</Button>
+            <Button type="submit" marginTop="20px" marginBottom="0px">
+              Publier
+            </Button>
           </div>
         </Form>
       </div>

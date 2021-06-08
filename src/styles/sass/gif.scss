@@ -1,16 +1,15 @@
 
-
 .bg-white-gifs {
 background-color: white;
 text-align: center;
 width: 612px;
 display: flex;
-margin-top: 20px;
+margin: 20px auto 20px auto;
 padding: 20px;
-margin-left: auto;
-margin-right: auto;
-
-    justify-content: center;
+justify-content: center;
+@include tablet {
+    width: 80%;
+}
 }
 
 .gif-container{

@@ -5,10 +5,13 @@
     margin-right: auto;
     padding: 20px;
     margin-top: 20px;
+    @include tablet {
+        width: 80%;
+    }
 }
 
 .post {
-height: 180px;
+height: 100%;
 &__textarea {
     background-color: $grey-field;
     border-radius: 10px;
@@ -16,6 +19,9 @@ height: 180px;
     width: 80%;
     height: 40px;
     padding-left: 30px;
+    @include tablet {
+        width: 60%;
+    }
 }  
 &__image-container {
     height: 50px;
@@ -25,6 +31,7 @@ height: 180px;
     vertical-align: middle;
     align-items: center;
     line-height: 50px;
+    
 } 
 &__icon {
     height: 30px;
@@ -35,17 +42,23 @@ height: 180px;
     color: $grey-button;
     font-family: 'roboto-thin';
     font-size: 16px;
+    min-height: 40px;
     text-align: center;
-    height: 40px;
     width: 400px;
-    line-height: 40px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
+    @include tablet {
+        width: 80%;
+    }
 }
 }
 
 
 .center {
     text-align: center;
+}
+
+.image-preview {
+    width: 100%;
 }

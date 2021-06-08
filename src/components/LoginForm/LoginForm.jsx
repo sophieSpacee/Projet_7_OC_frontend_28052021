@@ -81,7 +81,7 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button type="submit" className="bouton">Se connecter</Button>
+        <Button type="submit" className="bouton" marginBottom="30px">Se connecter</Button>
         {
           errorMessage &&
           <p className="alert-message" >
