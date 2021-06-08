@@ -32,6 +32,7 @@ const Feed = () => {
       <Header />
       <div className="feed">
         <Post />
+        <h1 className="titre">Le fil d'actualité</h1>
         {
           gifs && gifs.length > 0 ?
           <>

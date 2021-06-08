@@ -93,3 +93,12 @@ justify-content: center;
     }
    
 }
+
+.titre2 {
+    font-family: 'roboto-thin';
+    text-align: left;
+    font-size: 30px;
+    @include tablet {
+        font-size: 18px
+    }
+}
