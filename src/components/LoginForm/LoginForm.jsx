@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import Form from "react-bootstrap/Form";
 import "../../styles/css/style.css"
 import logo from "../../assets/logo.png";
 import { useHistory } from "react-router-dom";
-// import AlertMessage from "./AlertMessage";
 
 const LoginForm = () => {
   const history = useHistory();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null)
+
+
   const changePage = (response) => {
     if (response.code === "LOGINFAILED") {
       console.log("Login failed");
+      setErrorMessage("Login failed.");
     } else {
       history.push("/feed");
     }
@@ -44,8 +50,10 @@ const LoginForm = () => {
       .catch((error) => console.error(error));
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  useEffect(() => {
+    setErrorMessage(null)
+  }, [email, password]);
+
 
   return (
     <div className="bg-white">
@@ -73,7 +81,13 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button type="submit">Se connecter</Button>
+        <Button type="submit" className="bouton">Se connecter</Button>
+        {
+          errorMessage &&
+          <p className="alert-message" >
+            {errorMessage}
+          </p>
+        }
       </Form>
       <a className="link" href="/Signup">Créez votre compte</a>
     </div>
