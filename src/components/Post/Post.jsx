@@ -22,9 +22,12 @@ const Post = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-
+    console.log(user.userId)
+    const userId = user.userId;
+    console.log(userId)
     formData.append("image", gif);
     formData.append("title", title);
+    formData.append("userId", userId);
     console.log(formData);
     fetch("http://localhost:3001/api/gifs", {
       method: "POST",
@@ -40,7 +43,6 @@ const Post = () => {
       .then((response) => {
         console.log(response);
         errHandler(response);
-        console.log("post submitted");
       })
       .catch((error) => console.error(error));
   };

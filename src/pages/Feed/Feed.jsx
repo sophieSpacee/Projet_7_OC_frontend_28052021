@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/css/style.css";
 import Gif from "../../components/Gif/Gif";
 import Post from "../../components/Post/Post";
@@ -6,8 +6,10 @@ import Header from "../../components/Header/Header";
 
 const Feed = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  const [gifs, setGifs] = useState(null)
 
-  fetch("http://localhost:3001/api/gifs", {
+  if (gifs === null){
+    fetch("http://localhost:3001/api/gifs", {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -20,15 +22,30 @@ const Feed = () => {
     })
     .then((response) => {
       console.log(response);
+      setGifs(response.gifs)
     })
     .catch((error) => console.error(error));
+  }
 
   return (
     <div className="bg-pink">
       <Header />
       <div className="feed">
         <Post />
-        <Gif />
+        {
+          gifs && gifs.length > 0 ?
+          <>
+            {
+              gifs.map((element, index) => 
+                <Gif element={element} />
+              )
+            }
+          </>
+          :
+          <div>
+            No Gif yet
+          </div>
+        }
       </div>
     </div>
   );
