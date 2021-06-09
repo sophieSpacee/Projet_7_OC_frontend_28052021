@@ -43,6 +43,7 @@ const Post = () => {
       .then((response) => {
         console.log(response);
         errHandler(response);
+        window.location.reload(false);
       })
       .catch((error) => console.error(error));
   };
@@ -72,15 +73,7 @@ const Post = () => {
           </Form.Group>
           <div className="center">
             <Form.Group controlId="gif">
-              {/* <Form.Control
-                placeholder="Gif upload "
-                className="post__upload"
-                type="file"
-                onChange={(e) => 
-                    setGif(e.target.files[0])
-                }
-                required
-              /> */}
+              
               <button className="post__upload" onClick={handleClick}>
                 {gif ? <img className="image-preview" src={URL.createObjectURL(gif)} ></img>  : "Téléchargez votre image"}
               </button>
