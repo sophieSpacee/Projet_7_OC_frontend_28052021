@@ -5,6 +5,7 @@
     margin-right: auto;
     padding: 20px;
     margin-top: 20px;
+    border-radius: 5px;
     @include tablet {
         width: 80%;
     }
@@ -16,9 +17,12 @@ height: 100%;
     background-color: $grey-field;
     border-radius: 10px;
     border: none;
+    font-family: 'roboto-light';
     width: 80%;
     height: 40px;
     padding-left: 30px;
+    line-height: 40px;
+    font-size: 16px;
     @include tablet {
         width: 60%;
     }
@@ -38,9 +42,9 @@ height: 100%;
 }
 &__upload {
     background-color: white;
-    border: 2px solid $grey-field;
+    border: 2px solid #E6E6E6;
     color: $grey-button;
-    font-family: 'roboto-thin';
+    font-family: 'roboto-light';
     font-size: 16px;
     min-height: 40px;
     text-align: center;

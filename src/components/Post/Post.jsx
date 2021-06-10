@@ -8,6 +8,7 @@ const Post = () => {
   const [title, setTitle] = useState("");
   const [gif, setGif] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
+
   const errHandler = (response) => {
     if (response.code === "MISSINGFIELDS") {
       console.log("missing fields");
@@ -22,13 +23,10 @@ const Post = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    console.log(user.userId)
     const userId = user.userId;
-    console.log(userId)
     formData.append("image", gif);
     formData.append("title", title);
     formData.append("userId", userId);
-    console.log(formData);
     fetch("http://localhost:3001/api/gifs", {
       method: "POST",
       headers: {
@@ -48,10 +46,12 @@ const Post = () => {
       .catch((error) => console.error(error));
   };
 
-  //essai
   const hiddenFileInput = React.useRef(null);
-  const handleClick = event => {
+  const handleClick = (event) => {
+    event.preventDefault()
+    console.log("click");
     hiddenFileInput.current.click();
+    console.log("after click")
   };
 
   return (
@@ -73,9 +73,16 @@ const Post = () => {
           </Form.Group>
           <div className="center">
             <Form.Group controlId="gif">
-              
               <button className="post__upload" onClick={handleClick}>
-                {gif ? <img className="image-preview" src={URL.createObjectURL(gif)} ></img>  : "Téléchargez votre image"}
+                {gif ? (
+                  <img
+                    className="image-preview"
+                    alt="your uploaded file"
+                    src={URL.createObjectURL(gif)}
+                  ></img>
+                ) : (
+                  "Téléchargez votre image"
+                )}
               </button>
               <input
                 type="file"

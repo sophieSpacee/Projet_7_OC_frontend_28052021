@@ -1,12 +1,14 @@
 
 .bg-white-gifs {
 background-color: white;
+position: relative;
 text-align: center;
 width: 612px;
 display: flex;
 margin: 20px auto 20px auto;
 padding: 20px;
 justify-content: center;
+border-radius: 5px;
 @include tablet {
     width: 80%;
 }
@@ -19,6 +21,8 @@ justify-content: center;
 
 .gif-image {
     width: 100%;
+    border-radius: 5px;
+
 }
 
 .author-container {
@@ -61,37 +65,19 @@ justify-content: center;
     font-family: 'roboto';
     background-color: white;
     border:none;
- 
+    color: #bd5ba4;
     &:hover {
         cursor: pointer;
     }
 }
 
-.comments {
-    margin-top: 20px;
-    width: 80%;
-    margin-left: 10%;
-    &__comment-container {
-        background-color: $grey-field;
-        border-radius: 10px;
-        &__author {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px;
-            font-family: 'roboto';
-           font-size: 12px;
-           color: $grey-button;
-        }
-        &__comment {
-            font-family: 'roboto-light';
-            font-size: 12px;
-            width: 100%;
-            text-align:  left;
-            padding-left: 8px;
-            padding-bottom: 8px;
-        }
+.comment-button {
+    font-family: 'roboto';
+    background-color: white;
+    border:none;
+    &:hover {
+        cursor: pointer;
     }
-   
 }
 
 .titre2 {
@@ -108,10 +94,10 @@ justify-content: center;
     border-radius: 10px;
     margin-bottom: 0px;
     margin-top: 0px;
-    width: 400px;
+    width: 300px;
     font-size: 15px!important;
     @include tablet {
-        width: 200px;
+        width: 150px;
     }
 }
 
@@ -133,4 +119,27 @@ justify-content: center;
     display: flex;
     align-items: center;
     // justify-content: center;
+}
+
+.bouton-comment {
+    height: 30px;
+    border: none;
+    border-radius: 45px;
+    margin-left: 20px;
+    background-color: $grey-button;
+    color: white;
+    cursor: pointer;
+}
+
+.comments-container {
+    max-height: 320px;
+    overflow: scroll;
+    margin-top: 20px;
+}
+
+.delete{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 20px;
 }

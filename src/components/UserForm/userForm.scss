@@ -5,6 +5,8 @@
 .bg-white-user {
     @include bg-white;
     padding-top: 50px;
+    border-radius: 5px;
+
     height: 520px;
   margin: auto;
   @include tablet {

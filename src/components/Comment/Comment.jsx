@@ -17,14 +17,15 @@ const Comment = ({ element }) => {
     }
     
   return (
+    
     <div className="comments">
           <div className="comments__comment-container">
             <div className="comments__comment-container__author">
-              <span>{Capitalize(element.author.first_name) + " " + Capitalize(element.author.last_name)}</span>
+              <span className="author">{Capitalize(element.author.first_name) + " " + Capitalize(element.author.last_name)}</span>
               {
-            days > 0 && <span>Il y a  {days}  jours </span> }
-           {days === 0 && hours > 0 && <span>Il y a  {hours}  heures </span>} 
-           {days === 0 && hours === 0 && <span>Il y a  {minutes}  minutes</span>} 
+            days > 0 && <span className="time">Il y a  {days}  jours </span> }
+           {days === 0 && hours > 0 && <span className="time">Il y a  {hours}  heures </span>} 
+           {days === 0 && hours === 0 && <span className="time">Il y a  {minutes}  minutes</span>} 
             </div>
             <div className="comments__comment-container__comment">
               {element.content}

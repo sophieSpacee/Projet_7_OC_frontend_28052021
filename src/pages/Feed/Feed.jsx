@@ -6,25 +6,30 @@ import Header from "../../components/Header/Header";
 
 const Feed = () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  const [gifs, setGifs] = useState(null)
+  const [gifs, setGifs] = useState(null);
+  const getGif = () => {
+    fetch("http://localhost:3001/api/gifs", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: "Token " + user.token,
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        setGifs(response.gifs)
+      })
+      .catch((error) => console.error(error));
+  }
+
+
 
   if (gifs === null){
-    fetch("http://localhost:3001/api/gifs", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      authorization: "Token " + user.token,
-    },
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((response) => {
-      console.log(response);
-      setGifs(response.gifs)
-    })
-    .catch((error) => console.error(error));
+    getGif()
   }
 
   return (
@@ -37,14 +42,14 @@ const Feed = () => {
           gifs && gifs.length > 0 ?
           <>
             {
-              gifs.map((element, index) => 
-                <Gif element={element} />
+              gifs.map((element, key) => 
+                <Gif element={element} key={element.id} onDelete={getGif}/>
               )
             }
           </>
           :
           <div>
-            No Gif yet
+      
           </div>
         }
       </div>

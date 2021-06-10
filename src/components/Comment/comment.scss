@@ -1,0 +1,38 @@
+
+.comments {
+    margin-top: 20px;
+    width: 80%;
+    margin-left: 10%;
+    &__comment-container {
+        background-color: $grey-comment;
+        border-radius: 5px;
+        padding: 3px;
+        &__author {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            font-family: 'roboto';
+           font-size: 12px;
+           color: $grey-button;
+        }
+        &__comment {
+            font-family: 'roboto-light';
+            font-size: 12px;
+            width: 100%;
+            text-align:  left;
+            padding-left: 8px;
+            padding-bottom: 8px;
+        }
+    }
+   
+}
+
+.author {
+    text-align: left;
+    margin-right: 10px;
+  
+}
+
+.time {
+    text-align: right;
+}

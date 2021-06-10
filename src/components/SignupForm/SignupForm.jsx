@@ -52,7 +52,7 @@ const SignupForm = () => {
             placeholder="Prénom"
             className="form-field"
             type="text"
-            pattern="^[a-Z ,.'-]+$"
+            pattern="^[a-zA-Z ,.'-]+$"
             minLength="2"
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
@@ -63,7 +63,7 @@ const SignupForm = () => {
             placeholder="Nom"
             className="form-field"
             type="text"
-            pattern="^[a-Z ,.'-]+$"
+            pattern="^[a-zA-Z ,.'-]+$"
             minLength="2"
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
