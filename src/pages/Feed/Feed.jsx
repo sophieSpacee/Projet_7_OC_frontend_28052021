@@ -20,13 +20,10 @@ const Feed = () => {
         return response.json();
       })
       .then((response) => {
-        console.log(response);
         setGifs(response.gifs)
       })
       .catch((error) => console.error(error));
   }
-
-
 
   if (gifs === null){
     getGif()
@@ -35,8 +32,8 @@ const Feed = () => {
   return (
     <div className="bg-pink">
       <Header />
-      <div className="feed">
-        <Post />
+      <section className="feed">
+        <Post onAdd={getGif}/>
         <h1 className="titre">Le fil d'actualité</h1>
         {
           gifs && gifs.length > 0 ?
@@ -52,7 +49,7 @@ const Feed = () => {
       
           </div>
         }
-      </div>
+      </section>
     </div>
   );
 };

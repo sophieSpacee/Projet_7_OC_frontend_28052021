@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Comment = ({ element }) => {
     const dateNow = new Date();
     const datePost = new Date(element.createdAt);
@@ -13,7 +12,6 @@ const Comment = ({ element }) => {
     timeLaps = timeLaps -  minutes * 60;
     const Capitalize = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
-
     }
     
   return (

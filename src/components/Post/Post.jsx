@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "../Button/Button";
 import "../../styles/css/style.css";
 import people from "../../assets/people.png";
 
-const Post = () => {
+const Post = ({onAdd}) => {
   const [title, setTitle] = useState("");
   const [gif, setGif] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
+  const [errorMessage, setErrorMessage] = useState(null)
+
 
   const errHandler = (response) => {
     if (response.code === "MISSINGFIELDS") {
@@ -22,37 +24,48 @@ const Post = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    const userId = user.userId;
-    formData.append("image", gif);
-    formData.append("title", title);
-    formData.append("userId", userId);
-    fetch("http://localhost:3001/api/gifs", {
-      method: "POST",
-      headers: {
-        authorization: "Token " + user.token,
-      },
-      body: formData,
-    })
-      .then((response) => {
-        console.log(response);
-        return response.json();
+    console.log(gif.size)
+    if(gif.size > 926148){
+      setErrorMessage("Taille maximale autorisée : 930 Ko ")
+    } else {
+      const formData = new FormData();
+      const userId = user.userId;
+      formData.append("image", gif);
+      formData.append("title", title);
+      formData.append("userId", userId);
+      fetch("http://localhost:3001/api/gifs", {
+        method: "POST",
+        headers: {
+          authorization: "Token " + user.token,
+        },
+        body: formData,
       })
-      .then((response) => {
-        console.log(response);
-        errHandler(response);
-        window.location.reload(false);
-      })
-      .catch((error) => console.error(error));
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          errHandler(response);
+          onAdd();
+          setGif(null)
+          setTitle("")
+        })
+        .catch((error) => console.error(error));
+    }
+    
   };
 
   const hiddenFileInput = React.useRef(null);
   const handleClick = (event) => {
     event.preventDefault()
-    console.log("click");
     hiddenFileInput.current.click();
-    console.log("after click")
   };
+
+  useEffect(() => {
+    setErrorMessage(null)
+  }, [ gif]);
+
+
+
 
   return (
     <div className="bg-white-post">
@@ -69,6 +82,7 @@ const Post = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
+              aria-label="Titre de votre publication"
             />
           </Form.Group>
           <div className="center">
@@ -77,11 +91,11 @@ const Post = () => {
                 {gif ? (
                   <img
                     className="image-preview"
-                    alt="your uploaded file"
+                    alt="votre gif"
                     src={URL.createObjectURL(gif)}
                   ></img>
                 ) : (
-                  "Téléchargez votre image"
+                  "Téléchargez votre gif"
                 )}
               </button>
               <input
@@ -89,12 +103,19 @@ const Post = () => {
                 ref={hiddenFileInput}
                 onChange={(e) => setGif(e.target.files[0])}
                 style={{ display: "none" }}
+                aria-label="Votre image ou gif à télécharger"
               />
             </Form.Group>
 
             <Button type="submit" marginTop="20px" marginBottom="0px">
               Publier
             </Button>
+            {
+          errorMessage &&
+          <p className="alert-message-size" >
+            {errorMessage}
+          </p>
+        }
           </div>
         </Form>
       </div>

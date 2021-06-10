@@ -10,34 +10,28 @@ import bin from "../../assets/bin.png";
 import Form from "react-bootstrap/Form";
 
 const Gif = ({ element, onDelete }) => {
-  const heartIcon = <FontAwesomeIcon icon={faHeart} />;
-  const commentIcon = <FontAwesomeIcon icon={faComment} />;
   const [content, setContent] = useState("");
   const [displayCommentBox, setCommentBox] = useState(false);
   const [gif, setGif] = useState(element);
   const user = JSON.parse(localStorage.getItem("user"));
+  const [comments, setComments] = useState(null);
 
   const gifCreatedByUser = useCallback(() => {
-    if(gif.UserId === user.userId) {
-      return true
-    }
-  });
-
+    return gif.UserId === user.userId
+  }, [gif, user]);
   const [displayDeleteButton, setDeleteButton] = useState(gifCreatedByUser())
   useEffect(() => {
     setDeleteButton(gifCreatedByUser());
   }, [gif, gifCreatedByUser]);
-
-
   const userIdInUsersLike = useCallback(() => {
     return gif.usersLiked.usersId.includes(user.userId);
-  });
+  }, [gif, user]);
+
   const [isLiked, setIsLiked] = useState(userIdInUsersLike());
   useEffect(() => {
     setIsLiked(userIdInUsersLike());
   }, [gif, userIdInUsersLike]);
 
-  const [comments, setComments] = useState(null);
   const dateNow = new Date();
   const datePost = new Date(element.createdAt);
   let timeLaps = Math.abs(dateNow - datePost) / 1000;
@@ -56,7 +50,6 @@ const Gif = ({ element, onDelete }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
- 
   const likeGif = () => {
     const id = element.id;
     const body = {
@@ -102,7 +95,6 @@ const Gif = ({ element, onDelete }) => {
       body: JSON.stringify(body),
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((response) => {
@@ -121,7 +113,6 @@ const Gif = ({ element, onDelete }) => {
       },
     })
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((response) => {
@@ -149,7 +140,7 @@ const Gif = ({ element, onDelete }) => {
           {days === 0 && hours === 0 && <span>Il y a {minutes} minutes</span>}
         </div>
         <h2 className="titre2"> {gif.title}</h2>
-        <img className="gif-image" src={gif.image} alt="Gif" />
+        <img className="gif-image" src={gif.image} alt="" />
         <div className="likes-container">
           <span>{gif.likes} J'aime</span>
           <span>{gif.comments.length} commentaires</span>
@@ -160,11 +151,11 @@ const Gif = ({ element, onDelete }) => {
             onClick={likeGif}
           >
             {" "}
-            {heartIcon} J'aime
+            <FontAwesomeIcon icon={faHeart} /> J'aime
           </button>
           <button className="comment-button" onClick={openCommentForm}>
             {" "}
-            {commentIcon} Je commente
+            <FontAwesomeIcon icon={faComment} /> Je commente
           </button>
         </div>
 
@@ -181,6 +172,8 @@ const Gif = ({ element, onDelete }) => {
                   minLength="2"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
+                  aria-label="commentaire"
+
                 />
               </Form.Group>
             </Form>

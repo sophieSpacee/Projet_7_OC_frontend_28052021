@@ -58,11 +58,24 @@ height: 100%;
 }
 }
 
-
 .center {
     text-align: center;
 }
 
 .image-preview {
     width: 100%;
+}
+
+.alert-message-size{
+    background-color: #FDF3D1;
+    color:#514013;
+    font-size: 12px;
+    width: 400px;
+     height: 40px;
+     line-height: 40px;
+     font-family: 'roboto';
+     margin: 10px auto 20px auto;
+     @include tablet {
+        width: 80%;
+    }
 }

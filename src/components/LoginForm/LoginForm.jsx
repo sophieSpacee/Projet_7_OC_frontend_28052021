@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom";
 
 const LoginForm = () => {
   const history = useHistory();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null)
@@ -23,12 +22,10 @@ const LoginForm = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(email, password);
     const body = {
       email: email,
       password: password,
     };
-    console.log(body);
     fetch("http://localhost:3001/api/users/login", {
       method: "POST",
       headers: {
@@ -41,10 +38,7 @@ const LoginForm = () => {
         return response.json();
       })
       .then((response) => {
-        console.log(response);
-        //changer avec contexte
         localStorage.setItem("user", JSON.stringify(response));
-        console.log(localStorage);
         changePage(response);
       })
       .catch((error) => console.error(error));
@@ -56,7 +50,7 @@ const LoginForm = () => {
 
 
   return (
-    <div className="bg-white">
+    <section className="bg-white">
       <img src={logo} alt="logo groupomania" className="logo" />
 
       <Form onSubmit={handleSubmit}>
@@ -69,6 +63,8 @@ const LoginForm = () => {
             title="xxxxxxx@yyyyyy.zz"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            aria-label="email"
+
           />
         </Form.Group>
         <Form.Group controlId="password">
@@ -79,6 +75,8 @@ const LoginForm = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            aria-label="mot de passe"
+
           />
         </Form.Group>
         <Button type="submit" className="bouton" marginBottom="10px">Se connecter</Button>
@@ -90,7 +88,7 @@ const LoginForm = () => {
         }
       </Form>
       <a className="link" href="/Signup">Créez votre compte</a>
-    </div>
+    </section>
   );
 }
 

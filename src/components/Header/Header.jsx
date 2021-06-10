@@ -5,16 +5,14 @@ import people from "../../assets/people.png"
 
 const Header = ()=> {
     
-   return <div className="header">
+   return <header className="header">
         <a href="/feed">
         <img src={logo4} alt="logo groupomania" className="logoHeader" />
             </a> 
             <a href="/user">
             <img src={people} alt="icone people" className="icone-header"/>
             </a>
-   </div>
-
-       
+   </header>
 }
 
 export default Header;

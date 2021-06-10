@@ -9,7 +9,11 @@ const User = () => {
   return (
     <div className="bg-pink">
        <Header/>
+       <section>
+         <h1 className="titre">Votre profil</h1>
        <UserForm/>
+       </section>
+       
     </div>
   );
 }

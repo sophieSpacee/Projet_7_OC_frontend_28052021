@@ -1,145 +1,142 @@
-
 .bg-white-gifs {
-background-color: white;
-position: relative;
-text-align: center;
-width: 612px;
-display: flex;
-margin: 20px auto 20px auto;
-padding: 20px;
-justify-content: center;
-border-radius: 5px;
-@include tablet {
+  background-color: white;
+  position: relative;
+  text-align: center;
+  width: 612px;
+  display: flex;
+  margin: 20px auto 20px auto;
+  padding: 20px;
+  justify-content: center;
+  border-radius: 5px;
+  @include tablet {
     width: 80%;
-}
+  }
 }
 
-.gif-container{
-    margin-top: 20px;
-    width: 80%;
+.gif-container {
+  margin-top: 20px;
+  width: 80%;
 }
 
 .gif-image {
-    width: 100%;
-    border-radius: 5px;
-
+  width: 100%;
+  border-radius: 5px;
 }
 
 .author-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 20px;
-    font-family: 'roboto';
-    font-size: 18px;
-    @include tablet {
-        font-size: 12px;
-    }
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  font-family: "roboto";
+  font-size: 18px;
+  @include tablet {
+    font-size: 12px;
+  }
 }
 
 .likes-container {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 2px solid $grey-field;
-    font-family: 'roboto-light';
-    font-size: 15px;
-    padding-bottom: 7px;
-    padding-top: 10px;
-    color: $grey-button;
-       @include tablet {
-        font-size: 12px;
-    }
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid $grey-field;
+  font-family: "roboto-light";
+  font-size: 15px;
+  padding-bottom: 7px;
+  padding-top: 10px;
+  color: $grey-button;
+  @include tablet {
+    font-size: 12px;
+  }
 }
 
 .button-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    font-size: 18px;
-    @include tablet {
-        font-size: 12px;
-    }
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 18px;
+  @include tablet {
+    font-size: 12px;
+  }
 }
 
 .like-button {
-    font-family: 'roboto';
-    background-color: white;
-    border:none;
-    color: #bd5ba4;
-    &:hover {
-        cursor: pointer;
-    }
+  font-family: "roboto";
+  background-color: white;
+  border: none;
+  color: #bd5ba4;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .comment-button {
-    font-family: 'roboto';
-    background-color: white;
-    border:none;
-    &:hover {
-        cursor: pointer;
-    }
+  font-family: "roboto";
+  background-color: white;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .titre2 {
-    font-family: 'roboto-thin';
-    text-align: left;
-    font-size: 30px;
-    @include tablet {
-        font-size: 18px
-    }
+  font-family: "roboto-thin";
+  text-align: left;
+  font-size: 30px;
+  @include tablet {
+    font-size: 18px;
+  }
 }
 
 .comment-form {
-    @include form-field;
-    border-radius: 10px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    width: 300px;
-    font-size: 15px!important;
-    @include tablet {
-        width: 150px;
-    }
+  @include form-field;
+  border-radius: 10px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  width: 300px;
+  font-size: 15px !important;
+  @include tablet {
+    width: 150px;
+  }
 }
 
 .people-icon {
-    height: 30px;
-    margin-top: 0px;
-    margin-right: 20px;
-    margin-left: 20px;
-    @include tablet {
-        margin-right: 5px;
+  height: 30px;
+  margin-top: 0px;
+  margin-right: 20px;
+  margin-left: 20px;
+  @include tablet {
+    margin-right: 5px;
     margin-left: 5px;
-    }
+  }
 }
 
 .comment-line {
-    padding-top: 10px;
-    height: 60px;
-    line-height: 60px;
-    display: flex;
-    align-items: center;
-    // justify-content: center;
+  padding-top: 10px;
+  height: 60px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
 }
 
 .bouton-comment {
-    height: 30px;
-    border: none;
-    border-radius: 45px;
-    margin-left: 20px;
-    background-color: $grey-button;
-    color: white;
-    cursor: pointer;
+  height: 30px;
+  border: none;
+  border-radius: 45px;
+  margin-left: 20px;
+  background-color: $grey-button;
+  color: white;
+  cursor: pointer;
 }
 
 .comments-container {
-    max-height: 320px;
-    overflow: scroll;
-    margin-top: 20px;
+  max-height: 320px;
+  overflow: scroll;
+  margin-top: 20px;
 }
 
-.delete{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 20px;
+.delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 20px;
 }
