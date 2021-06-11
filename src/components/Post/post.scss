@@ -1,33 +1,33 @@
 .bg-white-post {
-    background-color: white;
-    width: 612px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-    @include tablet {
-        width: 80%;
-    }
+  background-color: white;
+  width: 612px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  @include tablet {
+    width: 80%;
+  }
 }
 
 .post {
-height: 100%;
-&__textarea {
+  height: 100%;
+  &__textarea {
     background-color: $grey-field;
     border-radius: 10px;
     border: none;
-    font-family: 'roboto-light';
+    font-family: "roboto-light";
     width: 80%;
     height: 40px;
     padding-left: 30px;
     line-height: 40px;
     font-size: 16px;
     @include tablet {
-        width: 60%;
+      width: 60%;
     }
-}  
-&__image-container {
+  }
+  &__image-container {
     height: 50px;
     width: 50px;
     display: inline-flex;
@@ -35,16 +35,15 @@ height: 100%;
     vertical-align: middle;
     align-items: center;
     line-height: 50px;
-    
-} 
-&__icon {
+  }
+  &__icon {
     height: 30px;
-}
-&__upload {
+  }
+  &__upload {
     background-color: white;
-    border: 2px solid #E6E6E6;
+    border: 2px solid #e6e6e6;
     color: $grey-button;
-    font-family: 'roboto-light';
+    font-family: "roboto-light";
     font-size: 16px;
     min-height: 40px;
     text-align: center;
@@ -53,29 +52,29 @@ height: 100%;
     margin-right: auto;
     margin-top: 10px;
     @include tablet {
-        width: 80%;
+      width: 80%;
     }
-}
+  }
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .image-preview {
-    width: 100%;
+  width: 100%;
 }
 
-.alert-message-size{
-    background-color: #FDF3D1;
-    color:#514013;
-    font-size: 12px;
-    width: 400px;
-     height: 40px;
-     line-height: 40px;
-     font-family: 'roboto';
-     margin: 10px auto 20px auto;
-     @include tablet {
-        width: 80%;
-    }
+.alert-message-size {
+  background-color: #fdf3d1;
+  color: #514013;
+  font-size: 12px;
+  width: 400px;
+  height: 40px;
+  line-height: 40px;
+  font-family: "roboto";
+  margin: 10px auto 20px auto;
+  @include tablet {
+    width: 80%;
+  }
 }

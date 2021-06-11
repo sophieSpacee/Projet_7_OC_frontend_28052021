@@ -7,6 +7,7 @@ import Header from "../../components/Header/Header";
 const Feed = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [gifs, setGifs] = useState(null);
+  
   const getGif = () => {
     fetch("http://localhost:3001/api/gifs", {
       method: "GET",
@@ -20,35 +21,30 @@ const Feed = () => {
         return response.json();
       })
       .then((response) => {
-        setGifs(response.gifs)
+        setGifs(response.gifs);
       })
       .catch((error) => console.error(error));
-  }
+  };
 
-  if (gifs === null){
-    getGif()
+  if (gifs === null) {
+    getGif();
   }
 
   return (
     <div className="bg-pink">
       <Header />
       <section className="feed">
-        <Post onAdd={getGif}/>
+        <Post onAdd={getGif} />
         <h1 className="titre">Le fil d'actualité</h1>
-        {
-          gifs && gifs.length > 0 ?
+        {gifs && gifs.length > 0 ? (
           <>
-            {
-              gifs.map((element, key) => 
-                <Gif element={element} key={element.id} onDelete={getGif}/>
-              )
-            }
+            {gifs.map((element, key) => (
+              <Gif element={element} key={element.id} onDelete={getGif} />
+            ))}
           </>
-          :
-          <div>
-      
-          </div>
-        }
+        ) : (
+          <div></div>
+        )}
       </section>
     </div>
   );

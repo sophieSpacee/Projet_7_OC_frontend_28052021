@@ -9,6 +9,7 @@ const UserForm = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [first_name, setFirstName] = useState(user.user.first_name);
   const [last_name, setLastName] = useState(user.user.last_name);
+  
   const changePage = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
@@ -36,7 +37,7 @@ const UserForm = () => {
       .then((response) => {
         user.user.first_name = first_name;
         user.user.last_name = last_name;
-        localStorage.setItem("user", JSON.stringify(user))
+        localStorage.setItem("user", JSON.stringify(user));
         changePage();
         return response.json();
       })
@@ -77,7 +78,6 @@ const UserForm = () => {
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
             aria-label="prénom"
-
           />
         </Form.Group>
         <Form.Group controlId="last_name">
@@ -89,7 +89,6 @@ const UserForm = () => {
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
             aria-label="nom"
-
           />
         </Form.Group>
 

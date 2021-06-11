@@ -1,37 +1,36 @@
 @mixin tablet {
-    @media screen and (max-width: 600px) {
-      @content;
-    }
+  @media screen and (max-width: 600px) {
+    @content;
   }
+}
 
-  @mixin bg-white {
-    background-color: white;
-    width: 612px;
-    height: 644px;
-    text-align: center;
-    @include tablet{
-        width: 100%;
-    }
+@mixin bg-white {
+  background-color: white;
+  width: 612px;
+  height: 644px;
+  text-align: center;
+  @include tablet {
+    width: 100%;
   }
+}
 
-  @mixin form-field {
-    background-color: $grey-field;
-    width: 400px;
-    height: 50px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 50px;
-    font-family: 'roboto-thin';
-    font-size: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    border: none;
-    padding: 0;
-    @include tablet{
-        width: 80%;
-        font-size: 18px;
-
-    }
+@mixin form-field {
+  background-color: $grey-field;
+  width: 400px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  font-family: "roboto-thin";
+  font-size: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border: none;
+  padding: 0;
+  @include tablet {
+    width: 80%;
+    font-size: 18px;
+  }
 }

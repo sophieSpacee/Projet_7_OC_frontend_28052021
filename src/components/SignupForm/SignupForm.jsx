@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
 import Form from "react-bootstrap/Form";
-import "../../styles/css/style.css"
+import "../../styles/css/style.css";
 import logo from "../../assets/logo.png";
 import { useHistory } from "react-router-dom";
 
@@ -53,7 +53,6 @@ const SignupForm = () => {
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
             aria-label="Prénom"
-
           />
         </Form.Group>
         <Form.Group controlId="last_name">
@@ -66,7 +65,6 @@ const SignupForm = () => {
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
             aria-label="nom"
-
           />
         </Form.Group>
         <Form.Group controlId="email">
@@ -79,7 +77,6 @@ const SignupForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             aria-label="email"
-
           />
         </Form.Group>
         <Form.Group controlId="password">
@@ -91,14 +88,15 @@ const SignupForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             aria-label="mot de passe"
-
           />
         </Form.Group>
         <Button type="submit">Créer mon compte</Button>
       </Form>
-      <a className="link" href="/">Se connecter</a>
+      <a className="link" href="/">
+        Se connecter
+      </a>
     </section>
   );
-}
+};
 
 export default SignupForm;

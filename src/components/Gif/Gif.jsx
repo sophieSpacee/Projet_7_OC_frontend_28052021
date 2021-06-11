@@ -1,4 +1,3 @@
-// import userEvent from "@testing-library/user-event";
 import React, { useState, useEffect, useCallback } from "react";
 import "../../styles/css/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,39 +7,29 @@ import Comment from "../Comment/Comment";
 import people from "../../assets/people.png";
 import bin from "../../assets/bin.png";
 import Form from "react-bootstrap/Form";
+import Date from "../Date/Date";
 
 const Gif = ({ element, onDelete }) => {
   const [content, setContent] = useState("");
   const [displayCommentBox, setCommentBox] = useState(false);
   const [gif, setGif] = useState(element);
   const user = JSON.parse(localStorage.getItem("user"));
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [displayDeleteButton, setDeleteButton] = useState();
+  const [isLiked, setIsLiked] = useState();
 
   const gifCreatedByUser = useCallback(() => {
-    return gif.UserId === user.userId
+    return gif.UserId === user.userId;
   }, [gif, user]);
-  const [displayDeleteButton, setDeleteButton] = useState(gifCreatedByUser())
-  useEffect(() => {
-    setDeleteButton(gifCreatedByUser());
-  }, [gif, gifCreatedByUser]);
+
   const userIdInUsersLike = useCallback(() => {
     return gif.usersLiked.usersId.includes(user.userId);
   }, [gif, user]);
 
-  const [isLiked, setIsLiked] = useState(userIdInUsersLike());
   useEffect(() => {
+    setDeleteButton(gifCreatedByUser());
     setIsLiked(userIdInUsersLike());
-  }, [gif, userIdInUsersLike]);
-
-  const dateNow = new Date();
-  const datePost = new Date(element.createdAt);
-  let timeLaps = Math.abs(dateNow - datePost) / 1000;
-  const days = Math.floor(timeLaps / 86400);
-  timeLaps = timeLaps - days * 86400;
-  const hours = Math.floor(timeLaps / 3600) % 24;
-  timeLaps = timeLaps - hours * 3600;
-  const minutes = Math.floor(timeLaps / 60) % 60;
-  timeLaps = timeLaps - minutes * 60;
+  }, [gif, gifCreatedByUser, userIdInUsersLike]);
 
   if (comments === null) {
     setComments(element.comments);
@@ -99,14 +88,14 @@ const Gif = ({ element, onDelete }) => {
       })
       .then((response) => {
         setGif(response.gif);
-        setCommentBox(false)
+        setCommentBox(false);
       })
       .catch((error) => console.error(error));
   };
 
   const deleteGif = () => {
     const id = element.id;
-    fetch("http://localhost:3001/api/gifs/" + id , {
+    fetch("http://localhost:3001/api/gifs/" + id, {
       method: "DELETE",
       headers: {
         authorization: "Token " + user.token,
@@ -117,17 +106,23 @@ const Gif = ({ element, onDelete }) => {
       })
       .then((response) => {
         onDelete();
-
       })
       .catch((error) => console.error(error));
-  }
+  };
 
   return (
     <div className="bg-white-gifs">
-      {
-        displayDeleteButton ?  <img src={bin} alt="supprimer" className="delete" onClick={deleteGif}></img> : <></>
-      }
-     
+      {displayDeleteButton ? (
+        <img
+          src={bin}
+          alt="supprimer"
+          className="delete"
+          onClick={deleteGif}
+        ></img>
+      ) : (
+        <></>
+      )}
+
       <div className="gif-container">
         <div className="author-container">
           <span>
@@ -135,9 +130,7 @@ const Gif = ({ element, onDelete }) => {
               " " +
               Capitalize(element.author.last_name)}
           </span>
-          {days > 0 && <span>Il y a {days} jours </span>}
-          {days === 0 && hours > 0 && <span>Il y a {hours} heures </span>}
-          {days === 0 && hours === 0 && <span>Il y a {minutes} minutes</span>}
+          <Date element={element} />
         </div>
         <h2 className="titre2"> {gif.title}</h2>
         <img className="gif-image" src={gif.image} alt="" />
@@ -173,7 +166,6 @@ const Gif = ({ element, onDelete }) => {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   aria-label="commentaire"
-
                 />
               </Form.Group>
             </Form>
@@ -187,17 +179,16 @@ const Gif = ({ element, onDelete }) => {
           </div>
         )}
         <div className="comments-container">
-        {gif.comments && gif.comments.length > 0 ? (
-          <>
-            {gif.comments.map((element, key) => (
-              <Comment element={element} key={element.id} />
-            ))}
-          </>
-        ) : (
-          <div></div>
-        )}
+          {gif.comments && gif.comments.length > 0 ? (
+            <>
+              {gif.comments.map((element, key) => (
+                <Comment element={element} key={element.id} />
+              ))}
+            </>
+          ) : (
+            <div></div>
+          )}
         </div>
-        
       </div>
     </div>
   );

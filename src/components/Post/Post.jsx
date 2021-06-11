@@ -4,12 +4,11 @@ import Button from "../Button/Button";
 import "../../styles/css/style.css";
 import people from "../../assets/people.png";
 
-const Post = ({onAdd}) => {
+const Post = ({ onAdd }) => {
   const [title, setTitle] = useState("");
   const [gif, setGif] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
-  const [errorMessage, setErrorMessage] = useState(null)
-
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const errHandler = (response) => {
     if (response.code === "MISSINGFIELDS") {
@@ -24,9 +23,9 @@ const Post = ({onAdd}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(gif.size)
-    if(gif.size > 926148){
-      setErrorMessage("Taille maximale autorisée : 930 Ko ")
+    console.log(gif.size);
+    if (gif.size > 926148) {
+      setErrorMessage("Taille maximale autorisée : 930 Ko ");
     } else {
       const formData = new FormData();
       const userId = user.userId;
@@ -46,26 +45,22 @@ const Post = ({onAdd}) => {
         .then((response) => {
           errHandler(response);
           onAdd();
-          setGif(null)
-          setTitle("")
+          setGif(null);
+          setTitle("");
         })
         .catch((error) => console.error(error));
     }
-    
   };
 
   const hiddenFileInput = React.useRef(null);
   const handleClick = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     hiddenFileInput.current.click();
   };
 
   useEffect(() => {
-    setErrorMessage(null)
-  }, [ gif]);
-
-
-
+    setErrorMessage(null);
+  }, [gif]);
 
   return (
     <div className="bg-white-post">
@@ -110,12 +105,9 @@ const Post = ({onAdd}) => {
             <Button type="submit" marginTop="20px" marginBottom="0px">
               Publier
             </Button>
-            {
-          errorMessage &&
-          <p className="alert-message-size" >
-            {errorMessage}
-          </p>
-        }
+            {errorMessage && (
+              <p className="alert-message-size">{errorMessage}</p>
+            )}
           </div>
         </Form>
       </div>

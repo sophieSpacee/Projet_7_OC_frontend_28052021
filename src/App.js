@@ -4,11 +4,10 @@ import Login from "./pages/Login";
 import Feed from "./pages/Feed/Feed";
 import Signup from "./pages/Signup";
 import User from "./pages/User";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./config/ProtectedRoute";
 
 function App() {
   return (
-    // contexte
     <Router>
       <Switch>
         <Route path={"/"} exact={true} component={Login}>

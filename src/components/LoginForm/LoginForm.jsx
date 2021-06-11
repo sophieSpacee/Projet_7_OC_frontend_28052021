@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import Form from "react-bootstrap/Form";
-import "../../styles/css/style.css"
+import "../../styles/css/style.css";
 import logo from "../../assets/logo.png";
 import { useHistory } from "react-router-dom";
 
@@ -9,8 +9,7 @@ const LoginForm = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null)
-
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const changePage = (response) => {
     if (response.code === "LOGINFAILED") {
@@ -20,12 +19,14 @@ const LoginForm = () => {
       history.push("/feed");
     }
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const body = {
       email: email,
       password: password,
     };
+    
     fetch("http://localhost:3001/api/users/login", {
       method: "POST",
       headers: {
@@ -45,9 +46,8 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    setErrorMessage(null)
+    setErrorMessage(null);
   }, [email, password]);
-
 
   return (
     <section className="bg-white">
@@ -64,7 +64,6 @@ const LoginForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             aria-label="email"
-
           />
         </Form.Group>
         <Form.Group controlId="password">
@@ -76,20 +75,23 @@ const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             aria-label="mot de passe"
-
           />
         </Form.Group>
-        <Button type="submit" className="bouton" marginBottom="10px">Se connecter</Button>
-        {
-          errorMessage &&
-          <p className="alert-message" >
-            {errorMessage}
-          </p>
-        }
+        <Button type="submit" className="bouton" marginBottom="10px">
+          Se connecter
+        </Button>
+        {errorMessage && (
+          <div>
+            {" "}
+            <p className="alert-message">{errorMessage}</p>
+          </div>
+        )}
       </Form>
-      <a className="link" href="/Signup">Créez votre compte</a>
+      <a className="link" href="/Signup">
+        Créez votre compte
+      </a>
     </section>
   );
-}
+};
 
 export default LoginForm;
