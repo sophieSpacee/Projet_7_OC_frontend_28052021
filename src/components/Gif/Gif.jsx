@@ -75,7 +75,6 @@ const Gif = ({ element, onDelete }) => {
       userId: user.userId,
       gifId: element.id,
     };
-    console.log(content);
     if (content === "") {
       setErrorMessage("Veuillez ajouter un commentaire svp ");
     } else {
