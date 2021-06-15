@@ -11,6 +11,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
 
+  // Check if user login went well before changing page to feed
   const changePage = (response) => {
     if (response.code === "LOGINFAILED") {
       console.log("Login failed");
@@ -20,13 +21,13 @@ const LoginForm = () => {
     }
   };
 
+  // Send a user login request
   const handleSubmit = (event) => {
     event.preventDefault();
     const body = {
       email: email,
       password: password,
     };
-    
     fetch("http://localhost:3001/api/users/login", {
       method: "POST",
       headers: {
@@ -52,7 +53,6 @@ const LoginForm = () => {
   return (
     <section className="bg-white">
       <img src={logo} alt="logo groupomania" className="logo" />
-
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email">
           <Form.Control

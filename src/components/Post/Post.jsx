@@ -10,13 +10,14 @@ const Post = ({ onAdd }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [errorMessage, setErrorMessage] = useState(null);
 
+  // Send request to post a gif if all fields are correctly filled
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(gif === null && title !==null){
+    if (gif === null && title !== null) {
       setErrorMessage("Veuillez ajouter une image ou un gif svp ");
       return false;
-    } 
-     if (gif !== null && gif.size > 926148) {
+    }
+    if (gif !== null && gif.size > 926148) {
       setErrorMessage("Taille maximale autorisée : 930 Ko ");
     } else {
       const formData = new FormData();
@@ -43,6 +44,7 @@ const Post = ({ onAdd }) => {
     }
   };
 
+  // Hide file input and replace it with customized button
   const hiddenFileInput = React.useRef(null);
 
   const handleClick = (event) => {

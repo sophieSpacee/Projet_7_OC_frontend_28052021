@@ -9,7 +9,8 @@ const Feed = () => {
   const [gifs, setGifs] = useState(null);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(null);
-  
+
+  // Send request to get all gifs
   const getGif = useCallback(() => {
     fetch("http://localhost:3001/api/gifs?page=" + page, {
       method: "GET",
@@ -29,21 +30,25 @@ const Feed = () => {
       .catch((error) => console.error(error));
   }, [page, user.token]);
 
+  // Go to the next page
   const nextPage = () => {
     setPage(page + 1);
-    window.scrollTo(0, 0)
-  }
+    window.scrollTo(0, 0);
+  };
 
+  // Go to the previous page
   const previousPage = () => {
     setPage(page - 1);
-    window.scrollTo(0, 0)
-  }
+    window.scrollTo(0, 0);
+  };
 
-  useEffect(()=> {
-    getGif()
-  }, [page, user.token, getGif])
+  // Update gifs on page change
+  useEffect(() => {
+    getGif();
+  }, [page, user.token, getGif]);
 
-  if(gifs===null){
+  // Launch getGif request only if no gifs are already displayed on the page to prevent infinite loop
+  if (gifs === null) {
     getGif();
   }
 
@@ -63,10 +68,19 @@ const Feed = () => {
           <div></div>
         )}
         <div className="nav-button">
-        {page > 0 && <span className="nav-button__previous" onClick={previousPage}>Précédent</span>}
-        { page < (totalPages-1) ?  (<span className="nav-button__next" onClick={nextPage}>Suivant</span>) : (<></>)}
+          {page > 0 && (
+            <span className="nav-button__previous" onClick={previousPage}>
+              Précédent
+            </span>
+          )}
+          {page < totalPages - 1 ? (
+            <span className="nav-button__next" onClick={nextPage}>
+              Suivant
+            </span>
+          ) : (
+            <></>
+          )}
         </div>
-       
       </section>
     </div>
   );

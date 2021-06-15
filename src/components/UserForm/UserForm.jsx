@@ -9,7 +9,8 @@ const UserForm = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [first_name, setFirstName] = useState(user.user.first_name);
   const [last_name, setLastName] = useState(user.user.last_name);
-  
+
+  // Check if user is logged in before redirecting to feed
   const changePage = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
@@ -19,6 +20,7 @@ const UserForm = () => {
     }
   };
 
+  // Send a request to update user information
   const handleSubmit = (event) => {
     event.preventDefault();
     const body = {
@@ -44,6 +46,7 @@ const UserForm = () => {
       .catch((error) => console.error(error));
   };
 
+  // Send request to delete user profile
   const deleteProfil = () => {
     fetch("http://localhost:3001/api/users/" + user.userId, {
       method: "DELETE",
@@ -60,7 +63,6 @@ const UserForm = () => {
       })
       .catch((error) => console.error(error));
   };
-
   const disconnect = () => {
     localStorage.clear();
     changePage();

@@ -16,6 +16,7 @@ const SignupForm = () => {
     history.push("/");
   };
 
+  // Send a sign up request when form is complete
   const handleSubmit = (event) => {
     event.preventDefault();
     const body = {

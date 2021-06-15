@@ -13,25 +13,29 @@ const Gif = ({ element, onDelete }) => {
   const [content, setContent] = useState("");
   const [displayCommentBox, setCommentBox] = useState(false);
   const [gif, setGif] = useState(element);
-  const user = JSON.parse(localStorage.getItem("user"));
   const [comments, setComments] = useState([]);
   const [displayDeleteButton, setDeleteButton] = useState();
   const [isLiked, setIsLiked] = useState();
   const [errorMessage, setErrorMessage] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  // Check if gif was created by current user
   const gifCreatedByUser = useCallback(() => {
     return gif.UserId === user.userId;
   }, [gif, user]);
 
+  // Check if current user already liked the gif
   const userIdInUsersLike = useCallback(() => {
     return gif.usersLiked.usersId.includes(user.userId);
   }, [gif, user]);
 
+  // Set delete button and like state of a gif
   useEffect(() => {
     setDeleteButton(gifCreatedByUser());
     setIsLiked(userIdInUsersLike());
   }, [gif, gifCreatedByUser, userIdInUsersLike]);
 
+  // Show all comments per gif
   if (comments === null) {
     setComments(element.comments);
   }
@@ -40,6 +44,7 @@ const Gif = ({ element, onDelete }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
+  // Send request to like gif
   const likeGif = () => {
     const id = element.id;
     const body = {
@@ -64,10 +69,12 @@ const Gif = ({ element, onDelete }) => {
       .catch((error) => console.error(error));
   };
 
+  // Open comment form on click on comment button
   const openCommentForm = () => {
     setCommentBox(true);
   };
 
+  // Send request to comment Gif
   const commentGif = () => {
     const id = element.id;
     const body = {
@@ -99,6 +106,12 @@ const Gif = ({ element, onDelete }) => {
     }
   };
 
+  // Send error message if content of comment is empty
+  useEffect(() => {
+    setErrorMessage(null);
+  }, [content]);
+
+  // Send requestion to delete a gif
   const deleteGif = () => {
     const id = element.id;
     fetch("http://localhost:3001/api/gifs/" + id, {
@@ -115,10 +128,6 @@ const Gif = ({ element, onDelete }) => {
       })
       .catch((error) => console.error(error));
   };
-
-  useEffect(() => {
-    setErrorMessage(null);
-  }, [content]);
 
   return (
     <div className="bg-white-gifs">
