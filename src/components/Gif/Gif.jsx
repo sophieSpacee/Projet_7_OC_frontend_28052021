@@ -17,6 +17,7 @@ const Gif = ({ element, onDelete }) => {
   const [comments, setComments] = useState([]);
   const [displayDeleteButton, setDeleteButton] = useState();
   const [isLiked, setIsLiked] = useState();
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const gifCreatedByUser = useCallback(() => {
     return gif.UserId === user.userId;
@@ -74,23 +75,29 @@ const Gif = ({ element, onDelete }) => {
       userId: user.userId,
       gifId: element.id,
     };
-    fetch("http://localhost:3001/api/gifs/" + id + "/comments/", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        authorization: "Token " + user.token,
-      },
-      body: JSON.stringify(body),
-    })
-      .then((response) => {
-        return response.json();
+    console.log(content);
+    if (content === "") {
+      setErrorMessage("Veuillez ajouter un commentaire svp ");
+    } else {
+      fetch("http://localhost:3001/api/gifs/" + id + "/comments/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          authorization: "Token " + user.token,
+        },
+        body: JSON.stringify(body),
       })
-      .then((response) => {
-        setGif(response.gif);
-        setCommentBox(false);
-      })
-      .catch((error) => console.error(error));
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          setGif(response.gif);
+          setCommentBox(false);
+          setContent("");
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   const deleteGif = () => {
@@ -110,6 +117,10 @@ const Gif = ({ element, onDelete }) => {
       .catch((error) => console.error(error));
   };
 
+  useEffect(() => {
+    setErrorMessage(null);
+  }, [content]);
+
   return (
     <div className="bg-white-gifs">
       {displayDeleteButton ? (
@@ -125,11 +136,16 @@ const Gif = ({ element, onDelete }) => {
 
       <div className="gif-container">
         <div className="author-container">
-          <span>
-            {Capitalize(element.author.first_name) +
-              " " +
-              Capitalize(element.author.last_name)}
-          </span>
+          {element.author === null ? (
+            <span> Utilisateur supprimé </span>
+          ) : (
+            <span>
+              {Capitalize(element.author.first_name) +
+                " " +
+                Capitalize(element.author.last_name)}
+            </span>
+          )}
+
           <Date element={element} />
         </div>
         <h2 className="titre2"> {gif.title}</h2>
@@ -166,6 +182,7 @@ const Gif = ({ element, onDelete }) => {
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   aria-label="commentaire"
+                  required
                 />
               </Form.Group>
             </Form>
@@ -178,6 +195,9 @@ const Gif = ({ element, onDelete }) => {
             </button>
           </div>
         )}
+        <div>
+          {errorMessage && <p className="alert-message-size">{errorMessage}</p>}
+        </div>
         <div className="comments-container">
           {gif.comments && gif.comments.length > 0 ? (
             <>

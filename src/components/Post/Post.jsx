@@ -10,21 +10,13 @@ const Post = ({ onAdd }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const errHandler = (response) => {
-    if (response.code === "MISSINGFIELDS") {
-      console.log("missing fields");
-    }
-    if (response.code === "WRONGFORMAT") {
-      console.log("wrong format");
-    } else {
-      console.log("pas d'erreur");
-    }
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(gif.size);
-    if (gif.size > 926148) {
+    if(gif === null && title !==null){
+      setErrorMessage("Veuillez ajouter une image ou un gif svp ");
+      return false;
+    } 
+     if (gif !== null && gif.size > 926148) {
       setErrorMessage("Taille maximale autorisée : 930 Ko ");
     } else {
       const formData = new FormData();
@@ -43,7 +35,6 @@ const Post = ({ onAdd }) => {
           return response.json();
         })
         .then((response) => {
-          errHandler(response);
           onAdd();
           setGif(null);
           setTitle("");
@@ -53,6 +44,7 @@ const Post = ({ onAdd }) => {
   };
 
   const hiddenFileInput = React.useRef(null);
+
   const handleClick = (event) => {
     event.preventDefault();
     hiddenFileInput.current.click();
@@ -60,7 +52,7 @@ const Post = ({ onAdd }) => {
 
   useEffect(() => {
     setErrorMessage(null);
-  }, [gif]);
+  }, [gif, title]);
 
   return (
     <div className="bg-white-post">
