@@ -106,12 +106,11 @@ const Gif = ({ element, onDelete }) => {
     }
   };
 
-  // Send error message if content of comment is empty
   useEffect(() => {
     setErrorMessage(null);
   }, [content]);
 
-  // Send requestion to delete a gif
+  // Send request to delete a gif
   const deleteGif = () => {
     const id = element.id;
     fetch("http://localhost:3001/api/gifs/" + id, {
@@ -185,7 +184,6 @@ const Gif = ({ element, onDelete }) => {
                   className="comment-form"
                   placeholder="Rédigez votre commentaire..."
                   type="text"
-                  pattern="^[a-z ,.'-]+$"
                   minLength="2"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
