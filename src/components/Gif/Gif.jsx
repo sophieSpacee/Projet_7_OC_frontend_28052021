@@ -203,7 +203,9 @@ const Gif = ({ element, onDelete }) => {
           </div>
         )}
         <div>
-          {errorMessage && <p className="alert-message-comment">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="alert-message-comment">{errorMessage}</p>
+          )}
         </div>
         <div className="comments-container">
           {gif.comments && gif.comments.length > 0 ? (

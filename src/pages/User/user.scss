@@ -1,7 +1,7 @@
 .titre-user {
-    font-family: "roboto";
-    text-align: center;
-    @include tablet {
-      margin-top: 120px;
-    }
+  font-family: "roboto";
+  text-align: center;
+  @include tablet {
+    margin-top: 120px;
   }
+}

@@ -17,8 +17,16 @@ const Post = ({ onAdd }) => {
       setErrorMessage("Veuillez ajouter une image ou un gif svp ");
       return false;
     }
-    if(gif !== null && gif.type !== "image/jpg" && gif.type !== "image/jpeg" && gif.type !== "image.png" && gif.type !== "image/gif"){
-      setErrorMessage("Mauvais format, formats autorisés : JPEG, JPG, PNG, GIF ");
+    if (
+      gif !== null &&
+      gif.type !== "image/jpg" &&
+      gif.type !== "image/jpeg" &&
+      gif.type !== "image.png" &&
+      gif.type !== "image/gif"
+    ) {
+      setErrorMessage(
+        "Mauvais format, formats autorisés : JPEG, JPG, PNG, GIF "
+      );
       return false;
     }
     if (gif !== null && gif.size > 926148) {

@@ -15,12 +15,13 @@ const Header = () => {
       <a href="/feed">
         <img src={logo4} alt="logo groupomania" className="logoHeader" />
       </a>
-        <div className="welcome">
-          Bonjour 
-            {" " + Capitalize(user.user.first_name) +
-              " " +
-              Capitalize(user.user.last_name)}
-          </div>
+      <div className="welcome">
+        Bonjour
+        {" " +
+          Capitalize(user.user.first_name) +
+          " " +
+          Capitalize(user.user.last_name)}
+      </div>
       <a href="/user">
         <img src={people} alt="icone people" className="icone-header" />
       </a>
