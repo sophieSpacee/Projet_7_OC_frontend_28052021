@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Feed from "./pages/Feed/Feed";
 import Signup from "./pages/Signup";
-import User from "./pages/User";
+import User from "./pages/User/User";
 import ProtectedRoute from "./config/ProtectedRoute";
 
 function App() {

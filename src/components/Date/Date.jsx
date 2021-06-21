@@ -7,7 +7,8 @@ const Date = ({ element }) => {
     <div>
       {days > 0 && <span>Il y a {days} jours </span>}
       {days === 0 && hours > 0 && <span>Il y a {hours} heures </span>}
-      {days === 0 && hours === 0 && <span>Il y a {minutes} minutes</span>}
+      {days === 0 && hours === 0 && minutes !== 0 && <span>Il y a {minutes} minutes</span>}
+      {days === 0 && hours === 0 && minutes === 0 && <span>Il y a un instant</span>}
     </div>
   );
 };

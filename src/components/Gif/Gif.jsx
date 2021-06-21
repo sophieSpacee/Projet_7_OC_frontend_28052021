@@ -3,6 +3,7 @@ import "../../styles/css/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import Comment from "../Comment/Comment";
 import people from "../../assets/people.png";
 import bin from "../../assets/bin.png";
@@ -197,12 +198,12 @@ const Gif = ({ element, onDelete }) => {
               className="bouton-comment"
               onClick={commentGif}
             >
-              Envoyer
+              <FontAwesomeIcon icon={faPaperPlane} />
             </button>
           </div>
         )}
         <div>
-          {errorMessage && <p className="alert-message-size">{errorMessage}</p>}
+          {errorMessage && <p className="alert-message-comment">{errorMessage}</p>}
         </div>
         <div className="comments-container">
           {gif.comments && gif.comments.length > 0 ? (

@@ -93,9 +93,10 @@
   margin-bottom: 0px;
   margin-top: 0px;
   width: 300px;
-  font-size: 15px !important;
+  font-size: 15px;
   @include tablet {
     width: 150px;
+    font-size: 12px;
   }
 }
 
@@ -107,6 +108,7 @@
   @include tablet {
     margin-right: 5px;
     margin-left: 5px;
+    height: 20px;
   }
 }
 
@@ -116,16 +118,25 @@
   line-height: 60px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .bouton-comment {
-  height: 30px;
+  height: 40px;
+  width: 40px;
   border: none;
-  border-radius: 45px;
+  border-radius: 30px;
   margin-left: 20px;
   background-color: $grey-button;
   color: white;
   cursor: pointer;
+  margin-right: 20px;
+  @include tablet {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 30px;
+    width: 30px;
+  }
 }
 
 .comments-container {
@@ -140,4 +151,18 @@
   right: 10px;
   height: 20px;
   cursor: pointer;
+}
+
+.alert-message-comment {
+  background-color: #fdf3d1;
+  color: #514013;
+  font-size: 12px;
+  width: 400px;
+  height: 40px;
+  line-height: 40px;
+  font-family: "roboto";
+  margin: 10px auto 20px auto;
+  @include tablet {
+    width: 100%;
+  }
 }

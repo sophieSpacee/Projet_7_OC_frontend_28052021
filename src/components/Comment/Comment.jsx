@@ -11,9 +11,15 @@ const Comment = ({ element }) => {
       <div className="comments__comment-container">
         <div className="comments__comment-container__author">
           <span className="author">
-            {Capitalize(element.author.first_name) +
-              " " +
-              Capitalize(element.author.last_name)}
+          {element.author === null ? (
+            <span> Utilisateur supprimé </span>
+          ) : (
+            <span>
+              {Capitalize(element.author.first_name) +
+                " " +
+                Capitalize(element.author.last_name)}
+            </span>
+          )}
           </span>
           <Date element={element} />
         </div>

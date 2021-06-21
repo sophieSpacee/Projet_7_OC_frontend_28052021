@@ -69,7 +69,7 @@ const UserForm = () => {
   };
 
   return (
-    <section className="bg-white-user">
+    <div className="bg-white-user">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="first_name">
           <Form.Control
@@ -114,7 +114,7 @@ const UserForm = () => {
       >
         Supprimer le profil
       </Button>
-    </section>
+    </div>
   );
 };
 

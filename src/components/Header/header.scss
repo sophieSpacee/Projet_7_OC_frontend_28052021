@@ -20,3 +20,15 @@
   top: 30px;
   right: 20px;
 }
+
+.welcome {
+  line-height: 100px;
+  font-family: 'roboto-light';
+  position: absolute;
+  right: 100px;
+  top: 0;
+  font-size: 20px;
+  @include tablet {
+    visibility: hidden;
+  }
+}
