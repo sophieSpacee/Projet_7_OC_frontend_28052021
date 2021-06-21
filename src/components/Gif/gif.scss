@@ -82,6 +82,7 @@
   font-family: "roboto-thin";
   text-align: left;
   font-size: 30px;
+  overflow-wrap: anywhere;
   @include tablet {
     font-size: 18px;
   }
