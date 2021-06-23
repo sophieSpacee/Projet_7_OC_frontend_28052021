@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import Form from "react-bootstrap/Form";
 import "../../styles/css/style.css";
@@ -10,10 +10,15 @@ const SignupForm = () => {
   const [password, setPassword] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
   const history = useHistory();
 
-  const changePage = () => {
-    history.push("/");
+  const changePage = (response) => {
+    if (response.code === "EMAILNOTUNIQUE") {
+      setErrorMessage("Email déjà utilisé sur un autre compte");
+    } else {
+      history.push("/");
+    }
   };
 
   // Send a sign up request when form is complete
@@ -34,11 +39,17 @@ const SignupForm = () => {
       body: JSON.stringify(body),
     })
       .then((response) => {
-        changePage();
         return response.json();
+      })
+      .then((response) => {
+        changePage(response);
       })
       .catch((error) => console.error(error));
   };
+
+  useEffect(() => {
+    setErrorMessage(null);
+  }, [email]);
 
   return (
     <section className="bg-white-signup">
@@ -49,11 +60,11 @@ const SignupForm = () => {
             placeholder="Prénom"
             className="form-field"
             type="text"
-            pattern="^[a-zA-Z ,.'-]+$"
             minLength="2"
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
             aria-label="Prénom"
+            required
           />
         </Form.Group>
         <Form.Group controlId="last_name">
@@ -61,11 +72,11 @@ const SignupForm = () => {
             placeholder="Nom"
             className="form-field"
             type="text"
-            pattern="^[a-zA-Z ,.'-]+$"
             minLength="2"
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
             aria-label="nom"
+            required
           />
         </Form.Group>
         <Form.Group controlId="email">
@@ -78,6 +89,7 @@ const SignupForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             aria-label="email"
+            required
           />
         </Form.Group>
         <Form.Group controlId="password">
@@ -89,13 +101,21 @@ const SignupForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             aria-label="mot de passe"
+            required
           />
         </Form.Group>
         <Button type="submit">Créer mon compte</Button>
+        {errorMessage && (
+          <div>
+            {" "}
+            <p className="alert-message">{errorMessage}</p>
+          </div>
+        )}
       </Form>
       <a className="link" href="/">
         Se connecter
       </a>
+      
     </section>
   );
 };
